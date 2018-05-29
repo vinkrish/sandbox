@@ -1,0 +1,62 @@
+mongod -> to run/daemon
+
+mongod --help | more
+md \data\db -> default location for mongoDB to store document
+
+mongo -> shell
+exit or Ctrl+C
+
+>help
+
+>show dbs
+shows database names
+
+>db
+test -> we are connected to test db
+
+>db.vin.save({_id:1, name:'Vinay'})
+WriteResult({})
+>db.vin.find()
+>db.vin.find().pretty()
+
+>show collections
+vin
+
+>db.dropDatabase()
+
+>use arrow_keys to back to history to shell commmands
+>delete the line with Ctrl+K from where the cursor is present
+>use Ctrl+arrow_keys to navigate across sentence skipping each word
+
+set EDITOR="C:\Program Files\Notepad++\notepad++.exe"
+
+>var stuff = function(name){
+...}
+function (name){ var doc = { Name: name, Created: Date(), Type: 'r'}; db.foo.save(doc); }
+>edit stuff
+>stuff('bob')
+
+>show collections
+foo
+vin
+>db.foo.find()
+{ "_id" : ObjectId("5b0ce2d4594433106bf007d4"), "Name" : "bob", "Created" : "Tue May 29 2018 10:49:16 GMT+0530 (India Standard Time)", "Type" : "r" }
+
+>pwd()
+C:\Users\Vinay
+
+>load('userCount.js')
+
+>db.dropDatabase
+Don't do it man!
+
+>mongo --norc
+to disable .mongorc.js which has dropDatabase function
+
+>db.vin.insert({_id:1, name:'Krishna'})
+duplicate key error
+
+save()->overwrites
+insert()->warns if key is already present
+
+_id can be anything eg: email
