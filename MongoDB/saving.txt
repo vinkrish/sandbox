@@ -1,0 +1,64 @@
+>db.a.save({_id:1, x:10});
+>var doc = db.a.findOne({_id:1});
+>doc.x = doc.x+1;
+11
+>db.a.save(doc);
+
+>db.a.update({_id:1}, {$inc:{x:1}});
+
+>db.a.update({_id:1}, {$set:{y:3}});
+to add field
+
+>db.a.update({_id:1}, {$unset:{y:3}});
+to remove a field
+
+>db.a.update({_id:1}, {$rename:{'Naem':'Name'}});
+to update field name
+
+>db.a.update({_id:1}, {$push:{things:'one'}});
+creates array
+
+>db.a.update({_id:1}, {$addToSet:{things:'one'}});
+to avoid duplicates in array
+
+>db.a.update({_id:1}, {$pull:{things:'three'}});
+to remove from array
+
+>db.a.update({_id:1}, {$pop:{things:1}});
+to remove top element
+
+>db.a.update({_id:1}, {$pop:{things:-1}});
+to remove first element
+
+>db.x.save({_id:1});
+>db.x.update({_id:1}, {$push:{things:1}});
+>db.x.update({_id:1}, {$addToSet:{things:2}});
+>db.x.update({_id:1}, {$addToSet:{things:3}});
+
+>db.x.save({_id:2});
+>db.x.update({_id:2}, {$push:{things:2}});
+>db.x.update({_id:2}, {$addToSet:{things:3}});
+
+>db.x.save({_id:3});
+>db.x.update({_id:1}, {$push:{things:3}});
+
+>db.x.find()
+{ "_id" : 1, "things" : [ 1, 2, 3 ] }
+{ "_id" : 2, "things" : [ 2, 3 ] }
+{ "_id" : 3, "things" : [ 3 ] }
+
+>db.x.update({}, {$push:{things:4}});
+{ "_id" : 1, "things" : [ 1, 2, 3, 4 ] }
+only _id:1 will get update
+
+>db.x.update({}, {$push:{things:4}},{multi:true});
+all matching documents gets update
+
+>db.x.update({things:2}, {$push:{things:5}});
+updates only first occurrence of element array in collection
+
+>db.x.update({things:2}, {$push:{things:6}}, {multi:true});
+update all occurrences which has things 2
+
+db.x.drop()
+to drop a collection
