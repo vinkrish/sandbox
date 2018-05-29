@@ -1,0 +1,48 @@
+db.foo.ensureIndex(key, options)
+
+key: which fields? In what Order?
+options: Name? Build now? Unique | Sparse? TTL? Language?
+
+>db.system.indexes.find({ns:'test.animals'},{key:1})
+ns: namespace
+
+>db.animals.find({name:'cat'}).explain()
+
+Create Index on name fields with ascending
+>db.animals.ensureIndex({name:1})
+
+>db.animals.getIndexes()
+
+List all indexes on a Database
+db.getCollectionNames().forEach(function(collection) {
+   indexes = db[collection].getIndexes();
+   print("Indexes for " + collection + ":");
+   printjson(indexes);
+});
+
+To remove index
+db.animals.dropIndex({"name":1})
+
+Index on color - Don't forget quotation marks
+>db.animals.ensureIndex({"info.color":1})
+
+Index on array
+>db.animals.ensureIndex({tags:1})
+
+>db.animals.find({tags:'ocean'}, {name:1}).explain()
+
+Unique - Don't allow to insert duplicate name
+>db.animals.ensureIndex({name:1}, {unique:true})
+
+Count
+>db.animals.count()
+>db.animals.count({"info.color": {$exists:true}})
+
+Sparse Index - omits documents which doesn't include fields
+>db.animals.ensureIndex({"info.color":1}, {sparse:true})
+
+Index on multipel fields
+>db.animals.ensureIndex({tags:1, name:1})
+
+Index name
+>db.animals.ensureIndex(keys, {name:'small'})
