@@ -1,0 +1,118 @@
+>db.animals.find({_id:1}).pretty()
+
+>db.animals.find({_id:1}, {_id:1}) -> (query, projection)
+
+>db.animals.find({_id: {$gt:5}}, {_id:1}) -> _id greater than 5
+>db.animals.find({_id: {$lt:5}}, {_id:1}) -> _id less than 5
+>db.animals.find({_id: {$gte:5}}, {_id:1}) -> _id greater than or equal to 5
+>db.animals.find({_id: {$lte:5}}, {_id:1}) -> _id less than or equal to 5
+>db.animals.find({_id: {$gt:2,$lt:4}}, {_id:1}) -> _id greater than 2 and less than 4
+>db.animals.find({_id: {$not: {$gt:5}}}, {_id:1}) -> _id not greater than 5
+>db.animals.find({_id: {$in: [1,3]}}, {_id:1}) -> _id including 1 and 3
+>db.animals.find({_id: {$nin: [1,3]}}, {_id:1}) -> _id not 1 and 3
+
+db.animals.save({ _id: 1, name: 'cat', tags:['land','cute'] ,info:{type:'mammal', color:'red' }})
+db.animals.save({ _id: 2, name: 'rabbit', tags:['land','cute'],info:{type:'mammal', color:'white' } })
+db.animals.save({ _id: 3, name: 'shark', tags:['ocean'] ,info:{type:'fish', color:'grey' }})
+db.animals.save({ _id: 4, name: 'dolphin', tags:['ocean','cute'] ,info:{type:'mammal', color:'grey', canFly: null }})
+db.animals.save({ _id: 5, name: 'penguin', tags:['land','ocean','cute'] ,info:{type:'bird', canFly:false }})
+db.animals.save({ _id: 6, name: 'duck', tags:['land','cute'], info: {type:'bird', canFly: true} })
+
+Find all ocean animals
+>db.animals.find({tags:'ocean'});
+{ "_id" : 3, "name" : "shark", "tags" : [ "ocean" ], "info" : { "type" : "fish", "color" : "grey" } }
+{ "_id" : 4, "name" : "dolphin", "tags" : [ "ocean", "cute" ], "info" : { "type" : "mammal", "color" : "grey", "canFly" : null } }
+{ "_id" : 5, "name" : "penguin", "tags" : [ "land", "ocean", "cute" ], "info" : { "type" : "bird", "canFly" : false } }
+
+Find cute animals
+>db.animals.find({tags:'cute'}, {name:1});
+{ "_id" : 1, "name" : "cat" }
+{ "_id" : 2, "name" : "rabbit" }
+{ "_id" : 4, "name" : "dolphin" }
+{ "_id" : 5, "name" : "penguin" }
+{ "_id" : 6, "name" : "duck" }
+
+Find in cute and ocean
+>db.animals.find({tags: {$in: ['cute', 'ocean']}}, {name:1})
+
+Find in both cute and ocean
+>db.animals.find({tags: {$all: ['cute', 'ocean']}}, {name:1})
+
+Find not in
+>db.animals.find({tags: {$nin: ['cute']}}, {name:1})
+
+Find all grey animals. This time, only return their name.
+>db.animals.find({"info.color": 'grey'}, {_id: 0, name: 1});
+
+Find all animals that that can fly.
+>db.animals.find({"info.canFly":true}, {_id:0, name:1});
+Find bird that can fly
+>db.animals.find({info: {type: 'bird', canFly: true}}, {name:1})
+
+This doesn't work
+>db.animals.find({info: {canFly: true, type: 'bird'}}, {name:1})
+
+>db.animals.find({"info.canFly":true, "info.type": 'bird'}, {name:1});
+
+This doesn't work:
+>db.animals.find({info: {type: 'bird'}}, {name:1})
+This works:
+>db.animals.find({"info.type": 'bird'}, {name:1})
+
+Find all animal that don't have an 'info.canFly' field at all
+>db.animals.find({ "info.canFly":{$exists: false}}, {_id:0, name:1});
+
+Find all animals that have an 'info.canFly' field set to null or that don't have the 'info.canFly' field
+>db.animals.find({"info.canFly": null}, {_id:0, name:1});
+
+And operator ','
+>db.animals.find({"info.type":'bird', tags:'cute'}, {name:1});
+
+Exclude fields: no mix and match
+>db.animals.find({_id:1}, {_id:0, name:0})
+
+Cursor:
+>var c = db.animals.find({}, {name:1})
+>c.size()
+6
+>c.hasNext()
+true
+>c.forEach(function(d){print(d.name)})
+cat
+rabbit
+shark
+dolphin
+penguin
+duck
+>c.hasNext()
+false
+
+Sort by name in ascending
+>db.animals.find({}, {name:1}).sort({name:1})
+
+Sort by name in descending
+db.animals.find({}, {name:1}).sort({name:-1})
+
+Find all documents, sorted by their _id in descending order. Return their _id field only
+>db.animals.find({}, {_id:1}).sort({_id:-1});
+
+More than one sort criteria
+>db.animals.find({}, {name:1, "info.type":1}).sort({"info.type":1,"name":1})
+
+Limit
+>db.animals.find({}, {_id:1}).sort({_id:-1}).limit(3)
+
+Repeat the last query, this time return only the second and third documents
+>db.animals.find({}, {_id:1}).sort({_id:-1}).skip(1).limit(2);
+
+FindOne has no cursor
+>db.animals.findOne({_id:1})
+
+The cursor method forEach() takes a function with a single argument representing each document.
+//     Get the names of all animals. Save them in an array in the shell. 
+//     Hint: Javascript arrays have a push() method.
+//     For example 
+//         db.animals.find({}).forEach(function(r){ print(r._id)})
+
+>var result = [];
+>db.animals.find({},{name:1,_id:0}).forEach(function(r){result.push(r.name)})
