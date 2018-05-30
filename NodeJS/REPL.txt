@@ -1,0 +1,16 @@
+>lunch = 'pizza'
+'pizza'
+>lunch
+'pizza'
+>lunch = 'fries'
+'fries'
+
+node program.js
+
+var lunch = 'fries'
+console.log(lunch);
+
+optional to use var and semicolon
+
+npm install nodeunit -g
+nodeunit tests
