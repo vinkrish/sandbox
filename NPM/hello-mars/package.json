@@ -1,0 +1,22 @@
+{
+  "name": "hello-mars",
+  "version": "1.1.0-beta.0",
+  "description": "Say hello to Mars",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "mars"
+  ],
+  "author": "Vinay Krishna",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}

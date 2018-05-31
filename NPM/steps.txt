@@ -1,0 +1,87 @@
+npm install
+npm start
+npm test
+
+npm -h
+npm install -h
+npm help install -> opens browser on official documentation
+npm help-search remove
+npm help prune
+
+npm init -> to create package.json
+npm init -y -> create with all default to yes
+
+npm set init-author-name 'Vinay Krishna'
+npm set init-license 'MIT'
+
+npm config delete init-license
+
+ls ~/.npmrc
+Root of user directory
+
+know names in npm registry to install
+eg: ion-drive
+
+npm install lodash --save
+npm i lodash -S
+write into dependency section
+
+For Development machine:
+npm i lodash --save-dev
+npm i lodash -D
+
+Lists libraries installed: use list or ls
+ls node_modules/
+npm list
+npm list --depth 1
+npm list --global true
+npm list --depth 0 --long true
+npm list --depth 0 --json true
+npm list --depth 0 --dev true
+npm list --depth 0 --prod true
+
+Global libraries installed:
+npm list -g --depth 0
+
+npm uninstall underscore
+npm uninstall underscore --save -> to remove from dependency
+npm un underscore
+npm r underscore -g -> remove from global repository
+npm prune grunt
+
+npm i underscore@1.7 -> install latest version of 1.7
+1->major version
+7->minor version
+npm i underscore -> to install latest version
+npm i underscore@1.x
+npm i underscore@">1.1.0 < 1.4.0"
+npm i underscore@1.8.2 --save --save-exact
+npm i express@"3" --save
+
+cat package.json
+
+npm update --dev
+npm update --prod
+
+npm update underscore
+
+npm update -g -> careful as it update all library or do it one at a time
+npm update -g gulp
+
+npm install github-url
+
+npm i gist:58e5dfc62489a5a288de -> install from gist
+npm i ../hello-mars -> install from folder
+
+npm i npm@latest -g -> run this with administrator privilege
+
+npm run uglify
+or
+gulp compress (avoid)
+
+npm adduser
+
+npm publish
+npm info package-name
+npm repo package-name
+
