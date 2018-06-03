@@ -214,3 +214,99 @@ Standup.remove({ createdOn: { $gte: gteDate}}, function (err) {
 // Execute query w/o a callback function –does not wait on response
 var query = Standup.remove({ createdOn: { $gte: gteDate}});
 query.exec();
+
+Strings - Required
+
+// Required Validator Example
+var customerSchema= new Schema({
+	name: { type: String,required:true },
+	address: String,
+	city: String,
+	state: String,
+	country: String,
+	zipCode: Number,
+	createdOn: Date,
+	isActive: Boolean
+});
+
+// Signature = required(required, [message])
+// After the schema is defined –via the path API
+customerSchema.path(‘city’).required(true, ‘Oops! Supply a city.’);
+
+Strings – Match and Enum
+
+// String –Match Validator Example
+var reMatch = /[a-zA-Z]/;
+var customerSchema= new Schema({
+	name: { type: String,
+			required:true,
+			match: reMatch},
+		// abbreviated...
+});
+
+// String –EnumValidator Example
+var impediments = [‘none’,’minor’,’blocking’,’severe’];
+
+var standupSchema = new Schema({
+// abbreviated...
+	impediment: { type: String,
+				  required:true,
+				  enum: impediments }
+});
+
+Numbers
+
+// Customers must receive at least a 5% discount
+var customerSchema= new Schema({
+	name: String,
+	// ...
+	discount: { type: Number, min: 5}
+});
+
+// Customers not allowed more than 60% discount
+var customerSchema= new Schema({
+	name: String,
+	// ...
+	discount: { type: Number, max: 60}
+});
+
+// Customers allowed a discount between 5% and 60% only
+var customerSchema= new Schema({
+	name: String,
+	// ...
+	discount: { type: Number, min: 5, max: 60}
+});
+
+Middleware
+
+// Middleware execution flow example...
+var personSchema= new Schema({
+	firstName: { type: String,required:true },
+	lastName: { type: String,required:true },
+	status: { type: String,required:true,default: ‘Alive’ }
+});
+
+// Build a model from the person schema
+var Person = new mongoose.model(‘Person’, personSchema);
+
+// New document instance of a Person model
+var newPerson= new Person( { firstName: ‘John’, lastName: ‘Doe’ } );
+
+// Save the document... Internal validation (required) kicks off now
+newPerson.save(function (err) {
+	if (err) return handleError(err);
+	// saved the person document!
+});
+
+// Custom validation –method signature = validate(obj, [errorMsg])
+var sizeValidator = [
+	function (val) {
+	return (val.length> 0 && val.length<= 50)
+	},
+	// Custom error text...
+	'String must be between 1 and 50 characters long'];
+var personSchema = new Schema({
+	firstName: { type: String,required:true, validate:sizeValidator},
+	lastName: { type: String,required:true, validate: sizeValidator},
+	status: { type: String,required:true, default: ‘Alive’ }
+});
