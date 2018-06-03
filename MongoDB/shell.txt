@@ -21,7 +21,9 @@ mongod --remove
 >help
 
 >show dbs
-shows database names
+test
+bookAPI
+>use bookAPI
 
 >db
 test -> we are connected to test db
@@ -79,3 +81,6 @@ save()->overwrites
 insert()->warns if key is already present
 
 _id can be anything eg: email
+
+To insert documents from file with db name bookAPI:
+mongo bookAPI < booksJson.js
