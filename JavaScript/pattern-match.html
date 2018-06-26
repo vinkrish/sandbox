@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to do a match.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+	//case-insensitive
+	var str = "Visit W3Schools";
+    var patt1 = /w3schools/i;
+
+	//global matching
+	var str = "Is this all there is?";
+    var patt1 = /is/g;
+	
+	//multiple matching
+	var str = "\nIs th\nis it?";
+    var patt1 = /^is/m;
+
+    var str = "Is this all there is?";
+    var patt1 = /[h]/g; 
+	
+	var str = "123456789";
+    var patt1 = /[1-4]/g;
+	
+	var str = "re, green, red, green, gren, gr, blue, yellow";
+    var patt1 = /(red|green)/g;
+	
+	//global search for digits in a string.
+	var str = "Give 100%!"; 
+    var patt1 = /\d/g;
+	
+	//global search for whitespace characters in a string.
+	var str = "Is this all there is?";
+    var patt1 = /\s/g;
+	
+	//global search for "W3" at the beginning or end of a word in a string.
+	var str = "Visit W3Schools"; 
+    var patt1 = /\bW3/g;
+	
+    var result = str.match(patt1);
+    document.getElementById("demo").innerHTML = result;
+}
+</script>
+
+</body>
+</html>

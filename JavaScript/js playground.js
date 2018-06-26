@@ -170,6 +170,7 @@ for (var key in nyc) {
 }
 
 //prototype
+//Date objects inherit from Date.prototype. Array objects inherit from Array.prototype. Person objects inherit from Person.prototype.
 function Dog (breed) {
   this.breed = breed;
 };
@@ -198,7 +199,7 @@ function Penguin(name, numLegs) {
 }
 // create a sayName method for Penguins here
 Penguin.prototype.sayName = function() {
-    console.log("Hi my name is " + this.name);
+    console.log("Hi my name is :" + this.name);
 };
 // our test code
 var theCaptain = new Penguin("Captain Cook", 2);
@@ -223,9 +224,9 @@ Emperor.prototype = new Penguin();
 var emperor = new Emperor("Raja");
 console.log(emperor.numLegs);
 
-console.log( myEmperor.saying ); // should print "Waddle waddle"
-console.log( myEmperor.numLegs ); // should print 2
-console.log( myEmperor.isAlive ); // should print true
+console.log( emperor.saying ); // should print "Waddle waddle"
+console.log( emperor.numLegs ); // should print 2
+console.log( emperor.isAlive ); // should print true
 
 //private variable & methods
 function Person(first,last,age) {
