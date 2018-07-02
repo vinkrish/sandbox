@@ -296,3 +296,45 @@ for(var x in myStudentReport) {
     }
 }
 
+var a = [12, 12, 90]
+a.push(111, 111);
+Array.prototype.sum = function() {
+  var summed = 0;
+  var b = this;
+  for(var i=0; i< this.length; i++) {
+    summed = summed + b[i];
+  }
+  return summed;
+}
+console.log(a.sum());
+
+//The forEach() method executes a provided function once for each array element.
+var array = ['a', 'b', 'c'];
+array.forEach(function(element) {
+  console.log(element);
+});
+
+//copying array into another array
+Array.prototype.extend = function (other_array) {
+    /* you should include a test to check whether other_array really is an array */
+    other_array.forEach(function(v) {this.push(v)}, this);    
+}
+var a = [1,2,3];
+var b = [5,4,3];
+a.extend(b);
+
+//callbacks
+function doHomework(subject, callback) {
+  alert(`Starting my ${subject} homework.`);
+  callback();
+}
+
+doHomework('math', function() {
+  alert('Finished my homework');
+})
+
+function alertFinished(){
+  alert('Finished my homework');
+}
+doHomework('math', alertFinished);
+
