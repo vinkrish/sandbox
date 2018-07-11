@@ -14,12 +14,14 @@
         {name:"Sandeep",roll:34},
         {name:"John",roll:31},
         {name:"Smith",roll:20},
-        {name:"Rohan",roll:39},
+        {name:"Rohan",roll:23},
         {name:"Suresh",roll:23}
     ];
     var chainStudentArray= _.chain(studentArray);
     console.log("Chain: student with lowest roll: ",
-            chainStudentArray.sortBy('roll').first().value().name)
+            chainStudentArray.sortBy('roll').first().value().name);
+	//var count = _.count(studentArray, { roll: 23 });
+	//console.log(result);
 </script>
 </body>
 </html>

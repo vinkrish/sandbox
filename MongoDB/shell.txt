@@ -82,5 +82,8 @@ insert()->warns if key is already present
 
 _id can be anything eg: email
 
+>show collections
+Print a list of all collections for current database.
+
 To insert documents from file with db name bookAPI:
 mongo bookAPI < booksJson.js
