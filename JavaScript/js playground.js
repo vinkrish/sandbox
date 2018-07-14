@@ -1,3 +1,8 @@
+// Creating a New Object
+var obj = {};
+var nextObj = Object.create(Object.prototype);
+var lastObj = new Object();
+
 //jagged array
 var jagged = [[3,3,3],[9,9], 1, "asdf"];
 
@@ -22,11 +27,12 @@ var me = {
     age: 26
 }
 
-//object constructor
+//object constructor with dot notation
 var me = new Object();
 me.name = "VinKrish";
 me.age = 26;
 
+// Square bracket notation
 var me = {};
 me["name"] = "Vinkrish";
 me["age"] = "26";
