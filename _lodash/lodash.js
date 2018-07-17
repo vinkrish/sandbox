@@ -17,3 +17,32 @@ var objects = [
 var matches = _.filter(objects, _.matches({ 'a': 4, 'c': 6 }));
 console.log(matches);
 // => [{ 'a': 4, 'b': 5, 'c': 6 }]
+
+_.sample(['a', 'b', 'c']);
+// -> 'a'
+
+_.sample({
+a: 1,
+b: 2,
+c: 3
+});
+// -> 1
+
+_.sample('hello');
+// -> 'h'
+
+_.sampleSize('hello', 2)
+// -> ['h', 'l']
+
+_.shuffle(['a', 'b', 'c']);
+// -> ['b', 'c', 'a']
+
+_.shuffle({
+a: 1,
+b: 2,
+c: 3
+});
+// -> [1, 2, 3]
+
+_.shuffle('hello');
+// -> ['l', 'l', 'o', 'h', 'e']
