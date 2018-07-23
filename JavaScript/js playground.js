@@ -213,13 +213,41 @@ theCaptain.sayName();
 
 // define a Penguin class
 function Penguin(name) {
-    this.name = name;
-    this.numLegs = 2;
+	Animal.call(this, name, 2);
+    // this.name = name;
+    // this.numLegs = 2;
 }
 // set its prototype to be a new instance of Animal
 Penguin.prototype = new Animal();
-var penguin = new Penguin("Pengy");
-penguin.sayName();
+var penguin1 = new Penguin("Pengy");
+penguin1.sayName();
+
+Penguin.prototype = Object.create(Animal.prototype);
+Penguin.prototype.constructor = Penguin;
+var penguin2 = new Penguin("Pengy");
+penguin2.sayName();
+
+// same as function prototype classes use extends which is syntactic sugar
+class Animal {
+	constructor(voice) {
+		this.voice = voice || 'grunt';
+	}
+	
+	speak() {
+		console.log(this.voice);
+	}
+}
+
+class Cat extends Animal {
+	constructor(name, color) {
+		super('Meow');
+		this.name = name;
+		this.color = color;
+	}
+}
+
+var fluffy = new Cat('Fluffy', 'White');
+console.log(fluffy);
 
 // create your Emperor class here and make it inherit from Penguin
 function Emperor(name) {
