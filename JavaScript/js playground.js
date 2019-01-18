@@ -145,6 +145,21 @@ james.sayJob();
 james.job = "super programmer"
 james.sayJob();
 
+// with ES6 you no longer need to specify the function keyword when defining functions inside objects
+var myObj = {
+  myMethod(params) {
+    // ...do something here
+  },
+  myOtherMethod(params) {
+    // ...do something here
+  },
+  nestedObj: {
+    myNestedMethod(params) {
+      // ...do something here
+    }
+  }
+};
+
 //typeof
 var anObj = { job: "I'm an object!" };
 var aNumber = 42;

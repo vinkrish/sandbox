@@ -45,14 +45,14 @@ var quiz1 = new Quiz({
 // save document...
 quiz1.save(callback);
 
-varcategories = [];
+var categories = [];
 // Fill in the categories array
 var cat1 = { name: 'Test1', description: 'Test 1 category', isActive: true };
 var cat2 = { name: 'Test2', description: 'Test 2 category', isActive: true };
 
 categories.push(cat1, cat2);
 
-varquestions = [];
+var questions = [];
 // Add in some questions and answers...
 var q1 = { type: 'Multiple-Choice', text: 'What is your favorite color?',
 	answers: [
