@@ -424,3 +424,7 @@ function(error) {
 function(error) {   
    console.log(error);
 }); 
+
+// check all values in array are same
+const allEqual = arr => arr.every( v => v === arr[0] )
+allEqual( [1,1,1,1] )  // true
