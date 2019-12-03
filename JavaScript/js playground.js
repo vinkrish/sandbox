@@ -37,6 +37,7 @@ var me = {};
 me["name"] = "Vinkrish";
 me["age"] = "26";
 
+// Anonymous function
 var square = function (x) {
   return x * x;
 };
@@ -188,6 +189,19 @@ for (var prop in nyc) {
 //values
 for (var key in nyc) {
     console.log(nyc[key]);
+}
+
+// enumerate object properties
+var obj = {
+  "a": 1,
+  "b": 2,
+  "c": 3
+};
+
+for (var prop in obj) {
+  if (obj.hasOwnProperty(prop)) {
+	console.log("prop: " + prop + " value: " + obj[prop])
+  }
 }
 
 //prototype
@@ -363,6 +377,38 @@ array.forEach(function(element) {
   console.log(element);
 });
 
+// forEach access to index
+array.forEach((element, index) => {
+  console.log(element, index);
+})
+
+// can't use break and continue but we can do the following
+array.filter(item => item.condition < 10)
+     .forEach(item => console.log(item))
+
+// map
+let a = [1,2,3]
+
+let b = a.map(elem => {
+	return elem * 2;
+})
+
+b = a.map((elem, index) => {
+	return elem * index;
+})
+
+// filter
+var words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+const result = words.filter(word => word.length > 6);
+console.log(result);
+
+// use reduce
+const numbers = [1,2,3,4,5];
+const sum = numbers.reduce((total, n) => total + n, 0);
+
+// instead of 
+numbers.forEach(num => { sum += num });
+
 //copying array into another array
 Array.prototype.extend = function (other_array) {
     /* you should include a test to check whether other_array really is an array */
@@ -423,8 +469,39 @@ function(error) {
 }, 
 function(error) {   
    console.log(error);
-}); 
+});
+
+const sleep = (ms) => {
+	return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+const sleep = promisify(setTimeout)
+
+await sleep(frequency * 1000)
+
+// JS object to JSON
+var myObj = {name: "John", age: 31, city: "New York"};
+var myJSON = JSON.stringify(myObj);
+
+// JSON to JS object
+var myJSON = '{"name":"John", "age":31, "city":"New York"}';
+var myObj = JSON.parse(myJSON);
+
+// Storing data:
+myObj = {name: "John", age: 31, city: "New York"};
+myJSON = JSON.stringify(myObj);
+localStorage.setItem("testJSON", myJSON);
+
+// Retrieving data:
+text = localStorage.getItem("testJSON");
+obj = JSON.parse(text);
 
 // check all values in array are same
 const allEqual = arr => arr.every( v => v === arr[0] )
 allEqual( [1,1,1,1] )  // true
+
+// es6 for-of
+let colors = ['red', 'green', 'blue'];
+for (const color of colors){
+  console.log(color);
+}
