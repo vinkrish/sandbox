@@ -23,3 +23,5 @@ class Button extends React.Component {
   }
 }
 ReactDOM.render(<Button />, mountNode);
+
+// set initial state in constructor
