@@ -80,3 +80,27 @@ const handleClick = () => {
 // Requires explicit bind
 
 <div onClick = { this.handleClick.bind(this) }></div>
+
+// How to render table
+<Table striped condensed hover>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    {personArray.map(this.renderPerson)}
+  </tbody>
+</Table>
+renderPerson(person, index) {
+  return (
+    <tr key={index}>
+      <td>{person.name}</td>
+      <td>{person.address}</td>
+      <td>{person.age}</td>
+    </tr>
+  )
+}
