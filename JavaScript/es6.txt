@@ -1,0 +1,30 @@
+es6 new features:
+
+1. Support for constants
+2. Block Scope
+3. Arrow Functions
+4. Template Literals
+5. Extended Literals
+6. Enhanced Object Properties
+7. Modules
+8. Classes
+9. Generators
+10. Collections
+11. Promises
+12. Extended Parameter Handling
+13. De-structuring Assignment
+
+JS is an un-typed language. This means a js variable can hold a value of any data type.
+This feature is termed as "dynamic typing".
+
+JS program can be composed of:
+1.Variables: store values for the program
+2.Literals: constants/fixed values
+3.Operators: symbols that define how the operands will be processed
+4.Keywords
+
+Closure: 
+
+It is the combination of a function bundled together (enclosed) with reference to it's surrounding state.
+A closure gives you access to an outer functions scope from an inner function.
+In javascript, closures are created every time a function is created and expose it. To expose a function, return it or pass it to another function.

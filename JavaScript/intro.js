@@ -1,3 +1,8 @@
+/*
+JS is an un-typed language. This means a js variable can hold a value of any data type.
+This feature is termed as "dynamic typing"
+*/
+
 alert("Hello World!");
 confirm("I love javascript!");
 prompt("Do you want to learn javascript");
